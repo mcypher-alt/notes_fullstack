@@ -14,6 +14,7 @@ export default function ToDoApp() {
   const [searchValue, setSearchValue] = useState('');
   const [sortBy, setSortBy] = useState('default');
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const API_URL = "https://notes-fullstack-n5hq.onrender.com/notes"
 
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem('theme') === 'dark';
@@ -25,7 +26,7 @@ export default function ToDoApp() {
   useEffect(() => {
     const loadNotes = async () => {
       try {
-        const response = await fetch('http://localhost:3001/notes');
+        const response = await fetch(API_URL);
         const data = await response.json();
         setNoteList(data);
       } catch(error) {
@@ -40,7 +41,7 @@ export default function ToDoApp() {
       if (noteList.length === 0) return;
 
       try {
-        await fetch('http://localhost:3001/notes', {
+        await fetch(API_URL, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
