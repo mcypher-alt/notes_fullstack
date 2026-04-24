@@ -14,7 +14,9 @@ export default function ToDoApp() {
   const [searchValue, setSearchValue] = useState('');
   const [sortBy, setSortBy] = useState('default');
   const [isMenuOpen, setMenuOpen] = useState(false);
-  const API_URL = "https://notes-fullstack-n5hq.onrender.com/notes"
+  const API_URL = import.meta.env.MODE === 'development'
+    ? 'http://localhost:3001/notes'
+    : 'https://notes-fullstack-n5hq.onrender.com/notes';
 
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem('theme') === 'dark';
@@ -34,7 +36,7 @@ export default function ToDoApp() {
       }
     };
     loadNotes();
-  }, []);
+  }, [API_URL]);
 
   useEffect(() => {
     const sendNotes = async () => {
