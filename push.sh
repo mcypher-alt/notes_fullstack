@@ -28,6 +28,6 @@ if [ "$push_answer" != "y" ]; then
     exit 0
 fi
 
-git push origin master
+git push origin main
 
 echo -e "${GREEN}✅ Готово!${NC}"

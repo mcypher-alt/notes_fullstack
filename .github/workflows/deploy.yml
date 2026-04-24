@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["master"] 
+    branches: ["main"]
 
 permissions:
   contents: read
@@ -20,19 +20,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
 
       - name: Install dependencies
         run: npm install
+        working-directory: ./client
 
       - name: Build
         run: npm run build
+        working-directory: ./client
 
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          # В Vite билд идет в папку 'dist', в Create React App — в папку 'build'
-          path: 'dist'
+          path: 'client/dist'
 
   deploy:
     needs: build_site

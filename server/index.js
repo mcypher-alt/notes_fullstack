@@ -24,6 +24,5 @@ app.post ('/notes', (req, res) => {
     res.send('Данные сохранены!');
 });
 
-app.listen(3001, () => {
-    console.log('Бэкенд запущен на порту 3001');
-});
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => console.log(`Слушаем порт ${PORT}`));
